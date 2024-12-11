@@ -17,7 +17,6 @@
                         <TextBox x:Name="ChatInput" KeyDown="ChatInput_OnKeyDown" Watermark="Type your message..." />
                         <Button x:Name="OpenFile" Content="Open File" Click="OpenFile_OnClick" />
                         <Button x:Name="OpenExplorer" Content="Open Explorer" Click="OpenExplorer_OnClick" />
-                        <Button x:Name="FinishSession" Content="Finish Session" Click="FinishSession_OnClick"/>
                     </StackPanel>
                 </TabItem>
                 <TabItem x:Name="Settings" Header="Settings">
@@ -34,8 +33,6 @@
                             
                             <TextBlock Text="U-307 Color Picker" />
                             <TextBox x:Name="U307ColourPicker" KeyDown="ColourPickers_OnKeyDown" />
-                            
-                            <Button x:Name="SaveSettings" Content="Save Settings" Click="SaveSettings_OnClick" />
                             
                             <Button x:Name="ChangeTime" Content="Change Time" Click="ChangeTime_OnClick" />
                         </StackPanel>

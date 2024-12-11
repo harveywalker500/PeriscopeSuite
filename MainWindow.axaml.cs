@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 
@@ -99,12 +100,8 @@ public partial class MainWindow : Window
 
     private void OpenExplorer_OnClick(object? sender, RoutedEventArgs e)
     {
-        throw new NotImplementedException();
-    }
-
-    private void FinishSession_OnClick(object? sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
+        string CurrentDirectory = Directory.GetCurrentDirectory();
+        Process.Start("explorer.exe", CurrentDirectory);
     }
 
     private void ChangeTime_OnClick(object? sender, RoutedEventArgs e)
