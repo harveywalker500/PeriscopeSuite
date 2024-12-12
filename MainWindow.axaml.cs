@@ -76,12 +76,6 @@ public partial class MainWindow : Window
         fileopener.StartInfo.Arguments = "\"" + FileHandler.MarkdownFile + "\"";
         fileopener.Start();
     }
-    
-
-    private void SaveSettings_OnClick(object? sender, RoutedEventArgs e)
-    {
-        throw new NotImplementedException();
-    }
 
     private void ColourPickers_OnKeyDown(object? sender, KeyEventArgs e)
     {
@@ -100,8 +94,8 @@ public partial class MainWindow : Window
 
     private void OpenExplorer_OnClick(object? sender, RoutedEventArgs e)
     {
-        string CurrentDirectory = Directory.GetCurrentDirectory();
-        Process.Start("explorer.exe", CurrentDirectory);
+        string currentDirectory = Directory.GetCurrentDirectory();
+        Process.Start("explorer.exe", currentDirectory);
     }
 
     private void ChangeTime_OnClick(object? sender, RoutedEventArgs e)
