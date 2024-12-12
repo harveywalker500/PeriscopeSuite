@@ -17,7 +17,7 @@ public partial class MainWindow : Window
     private Color U96Colour { get; set; } = Color.Green;
     private Color U552Colour { get; set; } = Color.Red;
     private Color U564Colour { get; set; } = Color.Blue;
-    private Color U307Colour { get; set; } = Color.Gold;
+    private Color U307Colour { get; set; } = Color.Purple;
 
     public MainWindow()
     {
@@ -61,7 +61,7 @@ public partial class MainWindow : Window
             {
                 Messages.Add(message);
                 ChatLog.ItemsSource = Messages;
-                FileHandler.WriteToLog(message);
+                FileHandler.WriteToLog(message, InGameTime);
                 Console.WriteLine("Message sent: " + message);
                 ChatInput.Clear();
             }

@@ -40,8 +40,9 @@ public class FileHandler
         TextFile = fileName;
     }
 
-    public void WriteToLog(string message)
+    public void WriteToLog(string message, TimeOnly inGameTime)
     {
+        this.InGameTime = inGameTime;
         Console.WriteLine(InGameTime.ToString());
         if (message.Contains("DE 96") || message.Contains("DE SW"))
         {
