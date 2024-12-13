@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Threading;
 
 namespace PeriscopeSuite;
 
@@ -18,6 +19,7 @@ public partial class MainWindow : Window
     private Color U552Colour { get; set; } = Color.Red;
     private Color U564Colour { get; set; } = Color.Blue;
     private Color U307Colour { get; set; } = Color.Purple;
+    private DispatcherTimer _timer;
 
     public MainWindow()
     {
@@ -40,6 +42,19 @@ public partial class MainWindow : Window
         StartupWindow startupWindow = new();
         startupWindow.TimeSelected += OnTimeSelected;
         await startupWindow.ShowDialog(this);
+
+        _timer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromMinutes(1)
+        };
+        _timer.Tick += OnTimerTick;
+        _timer.Start();
+    }
+
+    private void OnTimerTick(object? sender, EventArgs e)
+    {
+        InGameTime = InGameTime.AddMinutes(1);
+        Console.WriteLine($"Current Time: {InGameTime}");
     }
 
     private void OnTimeSelected(object? sender, TimeOnly e)
@@ -103,5 +118,10 @@ public partial class MainWindow : Window
         StartupWindow startupWindow = new();
         startupWindow.TimeSelected += OnTimeSelected;
         startupWindow.ShowDialog(this);
+    }
+
+    private void FinishMission_OnClick(object? sender, RoutedEventArgs e)
+    {
+        FileHandler.ConvertToPdf();
     }
 }

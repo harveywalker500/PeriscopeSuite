@@ -15,8 +15,11 @@
                         <TextBlock Text="In-Game Time:" />
                         <ListBox x:Name="ChatLog" Height="250"/>
                         <TextBox x:Name="ChatInput" KeyDown="ChatInput_OnKeyDown" Watermark="Type your message..." />
-                        <Button x:Name="OpenFile" Content="Open File" Click="OpenFile_OnClick" />
-                        <Button x:Name="OpenExplorer" Content="Open Explorer" Click="OpenExplorer_OnClick" />
+                        <Grid x:Name="RadioLogButtons" RowDefinitions="*" ColumnDefinitions="*,*,*">
+                            <Button Grid.Column="0" x:Name="OpenFile" Content="Open File" Click="OpenFile_OnClick" />
+                            <Button Grid.Column="1" x:Name="OpenExplorer" Content="Open Explorer" Click="OpenExplorer_OnClick" />
+                            <Button Grid.Column="2" x:Name="FinishMission" Content="Finish Mission" Click="FinishMission_OnClick" />
+                        </Grid>
                     </StackPanel>
                 </TabItem>
                 <TabItem x:Name="Settings" Header="Settings">

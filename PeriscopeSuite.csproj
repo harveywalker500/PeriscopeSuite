@@ -17,8 +17,4 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.1.0" />
     <PackageReference Include="Markdown2Pdf" Version="2.2.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Content Include=".github\workflows\dotnet-desktop.yml" />
-  </ItemGroup>
 </Project>

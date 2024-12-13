@@ -7,8 +7,8 @@ namespace PeriscopeSuite;
 
 public class FileHandler
 {
-    public string MarkdownFile { get; set; }
-    public string TextFile { get; set; }
+    public string? MarkdownFile { get; set; }
+    public string? TextFile { get; set; }
     public TimeOnly InGameTime { get; set; }
     public Color U96Colour { get; set; }
     public Color U552Colour { get; set; }
@@ -28,14 +28,14 @@ public class FileHandler
 
     public void CreateMarkdownFile()
     {
-        string fileName = $"{DateTime.Now:yyyy-MM-dd} Radio Log.md";
+        string? fileName = $"{DateTime.Now:yyyy-MM-dd} Radio Log.md";
         File.Create(fileName).Dispose();
         MarkdownFile = fileName;
     }
 
     public void CreateTextFile()
     {
-        string fileName = $"{DateTime.Now:yyyy-MM-dd} Radio Log.txt";
+        string? fileName = $"{DateTime.Now:yyyy-MM-dd} Radio Log.txt";
         File.Create(fileName).Dispose();
         TextFile = fileName;
     }
@@ -77,8 +77,9 @@ public class FileHandler
         File.AppendAllText(TextFile, $"{InGameTime}: {message}\n" + Environment.NewLine);
     }
 
-    public void ConvertToPDF()
+    public void ConvertToPdf()
     {
         var converter = new Markdown2PdfConverter();
+        converter.Convert(MarkdownFile); 
     }
 }
