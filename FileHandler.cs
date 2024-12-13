@@ -8,8 +8,8 @@ namespace PeriscopeSuite;
 public class FileHandler
 {
     public string? MarkdownFile { get; set; }
-    public string? TextFile { get; set; }
-    public TimeOnly InGameTime { get; set; }
+    private string? TextFile { get; set; }
+    private TimeOnly InGameTime { get; set; }
     public Color U96Colour { get; set; }
     public Color U552Colour { get; set; }
     public Color U564Colour { get; set; }
@@ -26,23 +26,23 @@ public class FileHandler
         U307Colour = u307Colour;
     }
 
-    public void CreateMarkdownFile()
+    private void CreateMarkdownFile()
     {
-        string? fileName = $"{DateTime.Now:yyyy-MM-dd} Radio Log.md";
+        var fileName = $"{DateTime.Now:yyyy-MM-dd} Radio Log.md";
         File.Create(fileName).Dispose();
         MarkdownFile = fileName;
     }
 
-    public void CreateTextFile()
+    private void CreateTextFile()
     {
-        string? fileName = $"{DateTime.Now:yyyy-MM-dd} Radio Log.txt";
+        var fileName = $"{DateTime.Now:yyyy-MM-dd} Radio Log.txt";
         File.Create(fileName).Dispose();
         TextFile = fileName;
     }
 
     public void WriteToLog(string message, TimeOnly inGameTime)
     {
-        this.InGameTime = inGameTime;
+        InGameTime = inGameTime;
         Console.WriteLine(InGameTime.ToString());
         if (message.Contains("DE 96") || message.Contains("DE SW"))
         {

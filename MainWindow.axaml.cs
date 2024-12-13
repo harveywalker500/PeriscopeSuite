@@ -12,9 +12,9 @@ namespace PeriscopeSuite;
 
 public partial class MainWindow : Window
 {
-    public ObservableCollection<string?> Messages { get; set; } = new();
-    public TimeOnly InGameTime { get; set; }
-    public FileHandler FileHandler { get; set; }
+    private ObservableCollection<string?> Messages { get; } = [];
+    private TimeOnly InGameTime { get; set; }
+    private FileHandler FileHandler { get; set; }
     private Color U96Colour { get; set; } = Color.Green;
     private Color U552Colour { get; set; } = Color.Red;
     private Color U564Colour { get; set; } = Color.Blue;
@@ -26,7 +26,7 @@ public partial class MainWindow : Window
         Console.WriteLine(U96Colour);
         InitializeComponent();
         GetDefaultColours();
-        this.Loaded += OnMainWindowLoaded;
+        Loaded += OnMainWindowLoaded;
     }
 
     private void GetDefaultColours()
@@ -67,25 +67,22 @@ public partial class MainWindow : Window
     private void ChatInput_OnKeyDown(object? sender, KeyEventArgs e)
     {
         ChatLog.ItemsSource = Messages;
-            
-        if (e.Key == Key.Enter)
-        {
-            string? message = ChatInput.Text;
 
-            if (!string.IsNullOrWhiteSpace(message))
-            {
-                Messages.Add(message);
-                ChatLog.ItemsSource = Messages;
-                FileHandler.WriteToLog(message, InGameTime);
-                Console.WriteLine("Message sent: " + message);
-                ChatInput.Clear();
-            }
-        }
+        if (e.Key != Key.Enter) return;
+        
+        var message = ChatInput.Text;
+        if (string.IsNullOrWhiteSpace(message)) return;
+            
+        Messages.Add(message);
+        ChatLog.ItemsSource = Messages;
+        FileHandler.WriteToLog(message, InGameTime);
+        Console.WriteLine("Message sent: " + message);
+        ChatInput.Clear();
     }
 
     private void OpenFile_OnClick(object? sender, RoutedEventArgs e)
     {
-        using Process fileopener = new Process();
+        using var fileopener = new Process();
 
         fileopener.StartInfo.FileName = "explorer";
         fileopener.StartInfo.Arguments = "\"" + FileHandler.MarkdownFile + "\"";
@@ -109,7 +106,7 @@ public partial class MainWindow : Window
 
     private void OpenExplorer_OnClick(object? sender, RoutedEventArgs e)
     {
-        string currentDirectory = Directory.GetCurrentDirectory();
+        var currentDirectory = Directory.GetCurrentDirectory();
         Process.Start("explorer.exe", currentDirectory);
     }
 

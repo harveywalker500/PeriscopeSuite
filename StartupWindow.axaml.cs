@@ -15,18 +15,16 @@ public partial class StartupWindow : Window
     {
         var selectedTime = GetSelectedTime();
         TimeSelected?.Invoke(this, selectedTime);
-        this.Close();
+        Close();
     }
 
     private TimeOnly GetSelectedTime()
     {
         var timePicker = this.FindControl<TimePicker>("TimePicker");
-        if (timePicker != null && timePicker.SelectedTime.HasValue)
-        {
-            TimeOnly selectedTime = TimeOnly.FromTimeSpan(timePicker.SelectedTime.Value);
-            Console.WriteLine($"Selected Time: {selectedTime}");
-            return selectedTime;
-        }
-        throw new InvalidOperationException("No time selected");
+        if (timePicker is not { SelectedTime: not null }) throw new InvalidOperationException("No time selected");
+        
+        var selectedTime = TimeOnly.FromTimeSpan(timePicker.SelectedTime.Value);
+        Console.WriteLine($"Selected Time: {selectedTime}");
+        return selectedTime;
     }
 }
