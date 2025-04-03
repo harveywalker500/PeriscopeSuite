@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450"
+        x:Class="PeriscopeSuite.StartupWindow"
+        Title="Mission Setup">
+    
+    <StackPanel Margin="20" HorizontalAlignment="Center">
+        <TextBlock Margin="0,0,0,10" FontWeight="Bold" FontSize="16">Mission Time</TextBlock>
+        <StackPanel Orientation="Horizontal" Spacing="10" Margin="0,0,0,20">
+            <TimePicker x:Name="InGameTimePicker" SelectedTime="0:00"/>
+        </StackPanel>
+        
+        <TextBlock Margin="0,0,0,10" FontWeight="Bold">Procedure</TextBlock>
+        <ComboBox Name="Procedure" Width="300" SelectedIndex="0" Margin="0,0,0,20">
+            <ComboBoxItem>Discord Chat</ComboBoxItem>
+            <ComboBoxItem>Steam Chat</ComboBoxItem>
+            <ComboBoxItem>Simplified Radio</ComboBoxItem>
+            <ComboBoxItem>Realistic Radio</ComboBoxItem>
+        </ComboBox>
+        
+        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" Margin="0,0,0,20">
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontWeight="Bold" Margin="0,0,0,10">Boat Information</TextBlock>
+            
+            <TextBox Grid.Row="1" Grid.Column="0" Name="Boat1Number" Margin="0,5,10,5" Watermark="Boat 1 Number"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="Boat1Operator" Margin="0,5,0,5" Watermark="Boat 1 Operator"/>
+            
+            <TextBox Grid.Row="2" Grid.Column="0" Name="Boat2Number" Margin="0,5,10,5" Watermark="Boat 2 Number"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Name="Boat2Operator" Margin="0,5,0,5" Watermark="Boat 2 Operator"/>
+            
+            <TextBox Grid.Row="3" Grid.Column="0" Name="Boat3Number" Margin="0,5,10,5" Watermark="Boat 3 Number"/>
+            <TextBox Grid.Row="3" Grid.Column="1" Name="Boat3Operator" Margin="0,5,0,5" Watermark="Boat 3 Operator"/>
+            
+            <TextBox Grid.Row="4" Grid.Column="0" Name="Boat4Number" Margin="0,5,10,5" Watermark="Boat 4 Number"/>
+            <TextBox Grid.Row="4" Grid.Column="1" Name="Boat4Operator" Margin="0,5,0,5" Watermark="Boat 4 Operator"/>
+        </Grid>
+        
+        <Button Name="StartButton" Click="StartButton_Click" 
+                HorizontalAlignment="Right" Padding="15,8">
+            Start Mission
+        </Button>
+    </StackPanel>
+</Window>
