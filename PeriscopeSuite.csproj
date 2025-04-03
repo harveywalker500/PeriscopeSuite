@@ -16,5 +16,6 @@
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.1.0" />
     <PackageReference Include="Markdown2Pdf" Version="2.2.1" />
+    <PackageReference Include="OpenWeatherMap.API" Version="2.1.4-pre" />
   </ItemGroup>
 </Project>

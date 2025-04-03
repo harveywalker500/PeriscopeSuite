@@ -1,0 +1,62 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500"
+        x:Class="PeriscopeSuite.MainWindow"
+        Title="Periscope Suite"
+        SizeToContent="WidthAndHeight">
+    <Grid>
+        <StackPanel Grid.Column="0" Grid.RowSpan="2">
+            <TextBlock x:Name="CurrentTime" Text="Current Time:" HorizontalAlignment="Center" FontSize="32"/>
+            <TextBlock x:Name="InGameTimeDisplay" Text="00:00:00" HorizontalAlignment="Center" FontSize="32"/>
+            <TabControl x:Name="TabControl">
+                <TabItem x:Name="RadioLog" Header="Radio Log">
+                    <StackPanel x:Name="RadioLogGrid">
+                        <TextBlock Text="In-Game Time:" />
+                        <ListBox x:Name="ChatLog" Height="250"/>
+                        <TextBox x:Name="ChatInput" KeyDown="ChatInput_OnKeyDown" Watermark="Type your message..." />
+                        <Grid x:Name="RadioLogButtons" ColumnDefinitions="*, *, *" RowDefinitions="*" >
+                            <Button Grid.Column="0" x:Name="OpenFile" Content="Open File" Click="OpenFile_OnClick" />
+                            <Button Grid.Column="1" x:Name="OpenExplorer" Content="Open Explorer" Click="OpenExplorer_OnClick" />
+                            <Button Grid.Column="2" x:Name="FinishMission" Content="Finish Mission" Click="FinishMission_OnClick" />
+                        </Grid>
+                    </StackPanel>
+                    
+                </TabItem>
+                <TabItem x:Name="WxReportGenerator" Header="WX Report Generator">
+                    <StackPanel>
+                        <TextBox x:Name="LatInput" Watermark="Latitude" />
+                        <TextBox x:Name="LongInput" Watermark="Longitude" />
+                        <ComboBox x:Name="UnitInput" >
+                            <ComboBoxItem Content="Metric" />
+                            <ComboBoxItem Content="Imperial" />
+                        </ComboBox>
+                        <Button x:Name="GenerateReport" Content="Generate Report" Click="GetWeatherAsync" />
+                        <TextBox x:Name="ReportOutput" Watermark="Report Output" IsReadOnly="True" />
+                    </StackPanel>
+                </TabItem>
+                
+                <TabItem x:Name="Settings" Header="Settings">
+                    <Grid x:Name="SettingsGrid">
+                        <StackPanel>
+                            <TextBlock Text="U-96 Color Picker" />
+                            <TextBox x:Name="Boat1ColourPicker" KeyDown="ColourPickers_OnKeyDown"/>
+                            
+                            <TextBlock Text="U-552 Color Picker" />
+                            <TextBox x:Name="Boat2ColourPicker" KeyDown="ColourPickers_OnKeyDown" />
+                            
+                            <TextBlock Text="U-564 Color Picker" />
+                            <TextBox x:Name="Boat3ColourPicker" KeyDown="ColourPickers_OnKeyDown" />
+                            
+                            <TextBlock Text="U-307 Color Picker" />
+                            <TextBox x:Name="Boat4ColourPicker" KeyDown="ColourPickers_OnKeyDown" />
+                            
+                            <Button x:Name="ChangeTime" Content="Change Time" Click="ChangeTime_OnClick" />
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+    </Grid>
+</Window>
