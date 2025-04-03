@@ -1,0 +1,47 @@
+﻿name: Publish Single EXE
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore ./PeriscopeSuite.csproj
+
+      - name: Build and Publish Single EXE
+        run: |
+          dotnet publish ./PeriscopeSuite.csproj `
+            --configuration Release `
+            --framework net8.0 `
+            --runtime win-x64 `
+            --self-contained true `
+            /p:EnableReadyToRun=true `
+            /p:PublishSingleFile=true `
+            /p:IncludeNativeLibrariesForSelfExtract=true `
+            /p:IncludeAllContentForSelfExtract=true `
+            /p:PublishTrimmed=false `
+            --output "./publish"
+
+      - name: Upload desktop executable artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SingleEXE
+          path: publish/PeriscopeSuite.exe

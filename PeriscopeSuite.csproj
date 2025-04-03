@@ -18,4 +18,8 @@
     <PackageReference Include="Markdown2Pdf" Version="2.2.1" />
     <PackageReference Include="OpenWeatherMap.API" Version="2.1.4-pre" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Include=".github\workflows\dotnet-desktop.yml" />
+  </ItemGroup>
 </Project>

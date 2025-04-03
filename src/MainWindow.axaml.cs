@@ -9,7 +9,6 @@ using System.Text.Json;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Threading;
-using OpenWeatherMap;
 
 namespace PeriscopeSuite;
 
@@ -32,7 +31,6 @@ public partial class MainWindow : Window
     private Color Boat3Colour { get; set; } = Color.Blue;
     private Color Boat4Colour { get; set; } = Color.Purple;
     private DispatcherTimer? _timer;
-    public event EventHandler<TimeOnly>? TimeSelected;
 
     public MainWindow()
     {
@@ -170,9 +168,10 @@ public partial class MainWindow : Window
 
     public async void GetWeatherAsync(object? sender, RoutedEventArgs routedEventArgs)
     {
-        string lat = LatInput.Text;
-        string lon = LongInput.Text;
+        string lat = LatInput.Text ?? throw new InvalidOperationException("Latitude is null");
+        string lon = LongInput.Text ?? throw new InvalidOperationException("Longitude is null");
         string apiKey = "6bff36ab4a7b2da0d055acd6e309490f";
+        
         string units = UnitInput.SelectedIndex == 0 ? "metric" : "imperial"; // 1 for metric, 0 for imperial
         
         using var client = new HttpClient();
@@ -199,7 +198,7 @@ public partial class MainWindow : Window
                 Console.WriteLine("No weather data available");
                 return;
             }
-            string weatherMain = weatherArray[0].GetProperty("main").GetString();
+            string weatherMain = weatherArray[0].GetProperty("main").GetString() ?? throw new InvalidOperationException();
             string weatherFormatted = FormatWeatherCondition(weatherMain);
 
             // Parse main data

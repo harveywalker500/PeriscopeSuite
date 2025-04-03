@@ -7,7 +7,7 @@
         Title="Periscope Suite"
         SizeToContent="WidthAndHeight">
     <Grid>
-        <StackPanel Grid.Column="0" Grid.RowSpan="2">
+        <StackPanel Grid.Column="0" Grid.RowSpan="2" Margin="10">
             <TextBlock x:Name="CurrentTime" Text="Current Time:" HorizontalAlignment="Center" FontSize="32"/>
             <TextBlock x:Name="InGameTimeDisplay" Text="00:00:00" HorizontalAlignment="Center" FontSize="32"/>
             <TabControl x:Name="TabControl">
@@ -16,7 +16,7 @@
                         <TextBlock Text="In-Game Time:" />
                         <ListBox x:Name="ChatLog" Height="250"/>
                         <TextBox x:Name="ChatInput" KeyDown="ChatInput_OnKeyDown" Watermark="Type your message..." />
-                        <Grid x:Name="RadioLogButtons" ColumnDefinitions="*, *, *" RowDefinitions="*" >
+                        <Grid x:Name="RadioLogButtons" ColumnDefinitions="*, *, *">
                             <Button Grid.Column="0" x:Name="OpenFile" Content="Open File" Click="OpenFile_OnClick" />
                             <Button Grid.Column="1" x:Name="OpenExplorer" Content="Open Explorer" Click="OpenExplorer_OnClick" />
                             <Button Grid.Column="2" x:Name="FinishMission" Content="Finish Mission" Click="FinishMission_OnClick" />
