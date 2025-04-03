@@ -24,17 +24,18 @@
                     </StackPanel>
                     
                 </TabItem>
-                <TabItem x:Name="WxReportGenerator" Header="WX Report Generator">
-                    <StackPanel>
-                        <TextBox x:Name="LatInput" Watermark="Latitude" />
-                        <TextBox x:Name="LongInput" Watermark="Longitude" />
-                        <ComboBox x:Name="UnitInput" >
+                <TabItem x:Name="WxReportGenerator" Header="WX Report Generator" >
+                    <Grid RowDefinitions="*, *, *, *, *, *" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                        <TextBox Grid.Row="0" x:Name="LatInput" Watermark="Latitude" Padding="5"/>
+                        <TextBox Grid.Row="1" x:Name="LongInput" Watermark="Longitude" Padding="5"/>
+                        <ComboBox Grid.Row="2" x:Name="UnitInput" Padding="5">
                             <ComboBoxItem Content="Metric" />
                             <ComboBoxItem Content="Imperial" />
                         </ComboBox>
-                        <Button x:Name="GenerateReport" Content="Generate Report" Click="GetWeatherAsync" />
-                        <TextBox x:Name="ReportOutput" Watermark="Report Output" IsReadOnly="True" />
-                    </StackPanel>
+                        <TextBox Grid.Row="3" x:Name="ApiKeyInput" Watermark="API Key" Padding="5"/>
+                        <Button Grid.Row="4" x:Name="GenerateReport" Content="Generate Report" Click="GetWeatherAsync" Padding="5"/>
+                        <TextBox Grid.Row="5" x:Name="ReportOutput" Watermark="Report Output" IsReadOnly="True" Padding="5"/>
+                    </Grid>
                 </TabItem>
                 
                 <TabItem x:Name="Settings" Header="Settings">

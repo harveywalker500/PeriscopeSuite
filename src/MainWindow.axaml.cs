@@ -170,7 +170,7 @@ public partial class MainWindow : Window
     {
         string lat = LatInput.Text ?? throw new InvalidOperationException("Latitude is null");
         string lon = LongInput.Text ?? throw new InvalidOperationException("Longitude is null");
-        string apiKey = "6bff36ab4a7b2da0d055acd6e309490f";
+        string apiKey = ApiKeyInput.Text ?? throw new InvalidOperationException("API Key is null");
         
         string units = UnitInput.SelectedIndex == 0 ? "metric" : "imperial"; // 1 for metric, 0 for imperial
         
@@ -221,7 +221,7 @@ public partial class MainWindow : Window
             double dayLengthHours = (sunset - sunrise) / 3600.0;
 
             // Format output
-            ReportOutput.Text = $"WX {city.ToUpper()} = {weatherFormatted} = " +
+            ReportOutput.Text = $"WX {city?.ToUpper()} = {weatherFormatted} = " +
                               $"TEMP {temp:F1} = " +
                               $"HYGRO {humidity} PCT = " +
                               $"BARO {pressure:F1} HPA = " +
