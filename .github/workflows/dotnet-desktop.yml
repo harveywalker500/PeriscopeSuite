@@ -33,12 +33,6 @@ jobs:
             --framework net8.0 `
             --runtime win-x64 `
             --output "./publish"
-          
-      - name: Create installer
-        uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
-        with:
-          path: src/installer/setup.iss
-          options: /O+
 
       - name: Upload desktop executable artifact
         uses: actions/upload-artifact@v4
